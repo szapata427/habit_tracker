@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>This is the title of the webpage!</title>
-    <script src="javascript_file.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="javascript_file.js" ></script>
     <link rel="stylesheet" href="style.css">
 
     <div class="navbar">
@@ -23,18 +24,18 @@
   <body>
       <div class="create-habit-container">
 
-          <form>
+          <form class="create_habit-form">
                   <label class="create-habit-label">Name</label><br>
-                  <input id ="input-habitname" class="create-habit-input" type="text" name="firstname" placeholder="Habit Name.." value="" pattern={2,} required title="2 characters minimum"><br>
-                  <label class="create-habit-label">Reason</label><br>
-                  <textarea class="create-habit-input" type="textbox" name="Reason"></textarea>
-                  <br>
+                  <input id ="input-habitname" class="create-habit-input" type="text" name="habitname" placeholder="Habit Name.."><br>
                   <labe class="create-habit-label">Days</labe><br>
-                  <input class="create-habit-input" type="text" name="Days"><br>
+                  <input class="create-habit-input" type="number" name="days"><br>
                   <label class="create-habit-label">Progress</label><br>
-                  <input class="create-habit-input" type="text" name="Progress">
+                  <input class="create-habit-input" type="text" name="progress">
                   <br>
-                  <button class="habit-form-submit-button">Submit</button>
+                  <label class="create-habit-label">Reason</label><br>
+                  <textarea class="create-habit-input" type="textbox" name="reason"></textarea>
+                  <br>
+                  <input type="submit" id="habit-submit" class="habit-form-submit-button" value="Submit">
                 </form>
       </div>
   </body>
