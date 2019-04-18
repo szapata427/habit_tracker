@@ -3,16 +3,16 @@ var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, db) {
 
-  app.get('/habits', (req, res) => {
-    db.collection('habits').find().toArray((err, result) => {
+  app.get('/workouts', (req, res) => {
+    db.collection('workouts').find().toArray((err, result) => {
       res.send(result)
     })
   })
 
-  app.get('/habits/:id', (req, res) => {
+  app.get('/workouts/:id', (req, res) => {
         const id = req.params.id;
           const details = { '_id': new ObjectID(id) };
-          db.collection('habits').findOne(details, (err, item) => {
+          db.collection('workouts').findOne(details, (err, item) => {
             if (err) {
               res.send({'error':'An error has occurred'});
             } else {
@@ -21,10 +21,10 @@ module.exports = function(app, db) {
           });
        });
 
-       const collection = app.post('/habits', (req, res) => {
-      const habit = { habit_name: req.body.habit_name}
+       const collection = app.post('/workouts', (req, res) => {
+      const habit = { workoutname: req.body.workoutname, muscle: req.body.muscle, sets: req.body.sets, reps: req.body.reps, workoutcomment: req.body.workout_comment}
       // const habit = { habit_name: req.body.habit_name, reason: req.body.reason, days: req.body.days, progress: req.body.progress}
-      db.collection('habits').insertOne(habit, (err, result) => {
+      db.collection('workouts').insertOne(habit, (err, result) => {
         if (err) {
           res.send({ 'error' : "An error has occurred"})
         }
@@ -34,11 +34,11 @@ module.exports = function(app, db) {
       })
     });
 
-    app.put('/habits/:id', (req, res) => {
+    app.put('/workouts/:id', (req, res) => {
       const id = req.params.id
       const details = { '_id': new ObjectID(id) }
       const habit = { habit_name: req.body.habit_name, reason: req.body.reason, days: req.body.days, progress: req.body.progress}
-      db.collection('habits').update(details, habit, (err, item) => {
+      db.collection('workouts').update(details, habit, (err, item) => {
         if (err) {
           res.send({ 'error' : "An error has occurred"})
         }

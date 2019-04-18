@@ -47,8 +47,25 @@
                   <label class="create-workout-label">Reps</label><br>
                   <input class="create-workout-input" type="number" name="reps" min="1" max="100"placeholder="Reps">
                   <br>
+                  <label class="create-workout-label">Comment</label><br>
+                  <input class="create-workout-input" type="text" name="comment" placeholder="Workout Comment">
+                  <br>
                   <input type="submit" id="workout-submit" class="workout-form-submit-button" value="Submit">
-                </form>
-      </div>
-  </body>
+            </form>
+        </div>
+            <div class="workout-table-div">
+                <table id="table-workouts" class="individual-workout-contianer"> 
+                    <tr>
+                        <!-- <col width="130">
+                        <col width="80"> -->
+                        <td class="th-workout">Workout Name</td>
+                        <td class="th-workout">Muscle</td> 
+                        <td class="th-workout">Sets</td>
+                        <td class="th-workout">Reps</td>
+                        <td class="th-workout">Comment</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </body>
 </html>

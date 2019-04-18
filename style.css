@@ -88,6 +88,9 @@ body {
       margin: auto;
       text-align: center;
       margin-top: 5%;
+      float: left;
+      margin-left: 3%;
+      position: relative;
   }
 
   .create-workout-label {
@@ -101,7 +104,7 @@ body {
       border: 2px solid black;
       border-radius: 9px;
       background-color: rgb(199, 242, 255);
-      font-size: 20px;
+      font-size: 15px;
       padding: 0px;
       max-width: 25em;
       margin-top: 1%;  
@@ -112,8 +115,10 @@ body {
      background-color: red;
      width: 20em;
      height: 3em;
-     font-size: 20px;
+     font-size: 15px;
      color: white;
+     border: 3px solid white;
+     border-radius: 1px;
  }
 
 .workout-form-submit-button {
@@ -130,3 +135,39 @@ body {
 }
 
 
+/* all workouts css */
+.workout-table-div{
+    position: relative;
+    width: 75%;
+    display: inline-block;
+    margin-top: 40em;
+    padding-right: 1em;
+
+    
+}
+
+.individual-workout-contianer {
+ border: 3px solid black;
+ /* float: right; */
+ border-radius: 10px;
+
+  }
+
+  td.th-workout {
+      padding: 0;
+      width: 3%;
+      left: 10%;
+      font-size: 20px;
+      padding-left: 1em;
+      font-weight: 600;
+  }
+
+  td.workout-info-td {
+    padding: 0;
+    padding-top: 1em;
+    width: 3%;
+    left: 10%;
+    font-size: 18px;
+    padding-left: 1em;
+    color: red;
+  }

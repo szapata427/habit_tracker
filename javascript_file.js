@@ -14,23 +14,23 @@ function showHabit() {
 $("form").submit(function(event){
     event.preventDefault()
     // alert("Submitted");
-    var namevalue = $("input[name=habitname]").val()
-    var daysvalue = $("input[name=days]").val()
-    var progressvalue = $("input[name=progress]").val()
-    var reasonvalue = $("textarea[name=reason]").val()
+    var namevalue = $("input[name=workoutname]").val()
+    var muslcegroup = $("select[name=muscles]").val()
+    var setsvalue = $("input[name=sets]").val()
+    var repsvalue = $("input[name=reps]").val()
+    var commentvalue = $("input[name=comment]").val()
     // var inputvalue = $("#input-habitname").val()
 
     data = {
-        habit_name: namevalue,
-        days: daysvalue,
-        reason: reasonvalue,
-        progress: progressvalue
+        workoutname: namevalue,
+        muscle: muslcegroup,
+        sets: setsvalue,
+        reps: repsvalue,
+        workout_comment: commentvalue
 
     }
-
-    console.log(data)
    
-    fetch('http://localhost:3005/habits', {
+    fetch('http://localhost:3005/workouts', {
         method: 'post',
         headers: { 
         "Content-Type": "application/json",
@@ -40,10 +40,29 @@ $("form").submit(function(event){
             body: JSON.stringify(data)
     }).then(response => response.json())
     .then(data => {
-        console.log(data)})
+        createdWorkout(data)})
 
     
 })
+
+function createdWorkout(workoutInfo) {
+    console.log(workoutInfo)
+    // let indivWorkoutDiv = document.getElementsByClassName("individual-workout")
+    
+    let workoutRow = document.createElement("tr")
+    let tableContainer = document.getElementById("table-workouts")
+    
+    tableContainer.appendChild(workoutRow)
+    workoutRow.innerHTML = 
+    `<td class="workout-info-td">  ${workoutInfo.workoutname}</td>
+    <td class="workout-info-td"> ${workoutInfo.muscle}</td>
+    <td class="workout-info-td"> ${workoutInfo.sets}</td>
+    <td class="workout-info-td"> ${workoutInfo.reps}</td>
+    <td class="workout-info-td"> ${workoutInfo.workoutcomment}</td>`
+
+    tableContainer.appendChild(workoutRow)
+
+}
 
 
 
