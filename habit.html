@@ -8,7 +8,7 @@
 
     <div class="navbar">
         <a href="./index.html">Home</a>
-        <a href="./habit.html">Habits</a>
+        <a href="./habit.html">Workout</a>
         <div class="dropdown">
           <button class="dropbtn">Dropdown 
             <i class="fa fa-caret-down"></i>
@@ -22,20 +22,32 @@
     </div>
   </head>
   <body>
-      <div class="create-habit-container">
+      <div class="create-workout-container">
 
-          <form class="create_habit-form">
-                  <label class="create-habit-label">Name</label><br>
-                  <input id ="input-habitname" class="create-habit-input" type="text" name="habitname" placeholder="Habit Name.."><br>
-                  <labe class="create-habit-label">Days</labe><br>
-                  <input class="create-habit-input" type="number" name="days"><br>
-                  <label class="create-habit-label">Progress</label><br>
-                  <input class="create-habit-input" type="text" name="progress">
+          <form class="create_workout-form">
+                  <label class="create-workout-label">Workout Name</label><br>
+                  <input id ="input-workoutname" class="create-workout-input" type="text" name="workoutname" placeholder="Workout Name.."><br>
+                  <label class="create-workout-label" >Muscle Group</labe><br>
+                  <select class="input-workoutname" name=muscles>
+                      <option class="dropdown-muscle" value="Chest"> Chest
+                      <option class="dropdown-muscle" value="Back"> Back
+                      <option class="dropdown-muscle" value="Biceps"> Biceps
+                      <option class="dropdown-muscle" value="Triceps"> Triceps
+                      <option class="dropdown-muscle" value="quads"> Quads
+                      <option class="dropdown-muscle" value="glutes"> Glutes
+                      <option class="dropdown-muscle" value="shoulders"> Shoulders
+                      <option class="dropdown-muscle" value="traps"> Traps
+                      <option class="dropdown-muscle" value="calves"> Calves
+                      <option class="dropdown-muscle" value="legs"> Legs
+                  </select>
                   <br>
-                  <label class="create-habit-label">Reason</label><br>
-                  <textarea class="create-habit-input" type="textbox" name="reason"></textarea>
+                  <label class="create-workout-label">Sets</label><br>
+                  <input class="create-workout-input" type="number" min="1" max="30" name="sets" placeholder="Sets..">
                   <br>
-                  <input type="submit" id="habit-submit" class="habit-form-submit-button" value="Submit">
+                  <label class="create-workout-label">Reps</label><br>
+                  <input class="create-workout-input" type="number" name="reps" min="1" max="100"placeholder="Reps">
+                  <br>
+                  <input type="submit" id="workout-submit" class="workout-form-submit-button" value="Submit">
                 </form>
       </div>
   </body>

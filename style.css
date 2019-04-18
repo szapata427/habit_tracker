@@ -81,21 +81,21 @@ body {
 
 
 
-  /* habit.html file css */
+  /* workout.html file css */
 
-  .create-habit-container {
+  .create-workout-container {
       width: auto;
       margin: auto;
       text-align: center;
       margin-top: 5%;
   }
 
-  .create-habit-label {
+  .create-workout-label {
       font-size: 25px;
       color: black;
     }
 
-  .create-habit-input {
+  .create-workout-input {
       width: 20em;
       height: 3em;
       border: 2px solid black;
@@ -104,19 +104,29 @@ body {
       font-size: 20px;
       padding: 0px;
       max-width: 25em;
-      margin-top: 1git%;  
+      margin-top: 1%;  
 
   }
 
+ select.input-workoutname {
+     background-color: red;
+     width: 20em;
+     height: 3em;
+     font-size: 20px;
+     color: white;
+ }
 
-  textarea {
-    max-height: 8em
+.workout-form-submit-button {
+    background: #0066A2;
+    color: white;
+    /* border-style: outset; */
+    border-color: #0066A2;
+    height: 50px;
+    width: 200px;
+    font: bold 15px arial, sans-serif;
+    text-shadow:none;
+    border: 3px solid white;
+    border-radius: 8px;
 }
 
-.habit-form-submit-button {
-    padding-left: 10em;
-    padding-right: 10em;
-    margin-top: 2em;
-    height: 5em;
-}
 

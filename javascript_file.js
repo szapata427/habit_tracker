@@ -6,6 +6,11 @@ $(document).ready(function () {
 // var submitNewHabit = document.getElementsByClassName("habit-form-submit-button")[0]
 
 
+function showHabit() {
+    console.log("showing new habit")
+}
+
+
 $("form").submit(function(event){
     event.preventDefault()
     // alert("Submitted");
@@ -36,6 +41,12 @@ $("form").submit(function(event){
     }).then(response => response.json())
     .then(data => {
         console.log(data)})
+
+    
 })
 
+
+
 })
+
+
