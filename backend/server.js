@@ -7,11 +7,12 @@ const app            = express();
 const port = 3005;
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -27,12 +28,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-MongoClient.connect(db.url, (err,client)=>{
-  
-    var db = client.db('spanishteachers');
+MongoClient.connect(db.url,  { useNewUrlParser: true }, (err,client)=>{
+    
+    var db = client.db('habits');
 
     if (err) {
-    return console.log(err);
+    return console.log("error message", err);
     }
 
 

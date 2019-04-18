@@ -12,12 +12,30 @@ $("form").submit(function(event){
     var namevalue = $("input[name=habitname]").val()
     var daysvalue = $("input[name=days]").val()
     var progressvalue = $("input[name=progress]").val()
-    var reasonvalue = $("input[name=reason]").val()
+    var reasonvalue = $("textarea[name=reason]").val()
     // var inputvalue = $("#input-habitname").val()
-    console.log(event)
-    console.log(namevalue)
-  });
 
+    data = {
+        habit_name: namevalue,
+        days: daysvalue,
+        reason: reasonvalue,
+        progress: progressvalue
 
+    }
 
-});
+    console.log(data)
+   
+    fetch('http://localhost:3005/habits', {
+        method: 'post',
+        headers: { 
+        "Content-Type": "application/json",
+        Accept: "applicatoin/json"
+            },
+            
+            body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(data => {
+        console.log(data)})
+})
+
+})
