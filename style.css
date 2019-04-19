@@ -146,10 +146,11 @@ body {
     
 }
 
-.individual-workout-contianer {
+.individual-workout-table {
  border: 3px solid black;
  /* float: right; */
  border-radius: 10px;
+ background-color: rgb(243, 227, 227);
 
   }
 

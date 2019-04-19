@@ -41,6 +41,21 @@
                       <option class="dropdown-muscle" value="legs"> Legs
                   </select>
                   <br>
+                  <label class="create-workout-label" >Secondary Muscle Group</labe><br>
+                  <select class="input-workoutname" name=secondMuscles>
+                      <option class="dropdown-muscle" value=null> None
+                      <option class="dropdown-muscle" value="Chest"> Chest
+                      <option class="dropdown-muscle" value="Back"> Back
+                      <option class="dropdown-muscle" value="Biceps"> Biceps
+                      <option class="dropdown-muscle" value="Triceps"> Triceps
+                      <option class="dropdown-muscle" value="quads"> Quads
+                      <option class="dropdown-muscle" value="glutes"> Glutes
+                      <option class="dropdown-muscle" value="shoulders"> Shoulders
+                      <option class="dropdown-muscle" value="traps"> Traps
+                      <option class="dropdown-muscle" value="calves"> Calves
+                      <option class="dropdown-muscle" value="legs"> Legs
+                  </select>
+                  <br>
                   <label class="create-workout-label">Sets</label><br>
                   <input class="create-workout-input" type="number" min="1" max="30" name="sets" placeholder="Sets..">
                   <br>
@@ -54,15 +69,17 @@
             </form>
         </div>
             <div class="workout-table-div">
-                <table id="table-workouts" class="individual-workout-contianer"> 
+                <table id="table-workouts" class="individual-workout-table"> 
                     <tr>
                         <!-- <col width="130">
                         <col width="80"> -->
                         <td class="th-workout">Workout Name</td>
                         <td class="th-workout">Muscle</td> 
+                        <td class="th-workout">Secon Muscle</td>
                         <td class="th-workout">Sets</td>
                         <td class="th-workout">Reps</td>
                         <td class="th-workout">Comment</td>
+                        <td class="th-workout">Date</td>
                     </tr>
                 </table>
                 
