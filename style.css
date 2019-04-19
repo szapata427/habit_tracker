@@ -156,7 +156,7 @@ body {
 
   td.th-workout {
       padding: 0;
-      width: 3%;
+      width: 10%;
       left: 10%;
       font-size: 20px;
       padding-left: 1em;
@@ -166,9 +166,17 @@ body {
   td.workout-info-td {
     padding: 0;
     padding-top: 1em;
-    width: 3%;
+    width: 13%;
     left: 10%;
     font-size: 18px;
     padding-left: 1em;
     color: red;
+  }
+
+  button.delete-workout-button {
+      position: relative;
+      background-color: yellow;
+      width: 8em;
+      left: 20%;
+      margin-top: 25%;
   }

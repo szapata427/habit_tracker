@@ -32,15 +32,17 @@ function loadWorkouts(workouts) {
     tableContainer.appendChild(workoutRow)
     workouts.forEach(workout => {
         let workoutRow = document.createElement("tr")
+        workoutRow.setAttribute("id", `workout-tr-${workoutId}`)
         console.log(workout)
         workoutRow.innerHTML +=
-        `<td class="workout-info-td">  ${workout.workoutname}</td>
-        <td class="workout-info-td"> ${workout.muscle}</td>
-        <td class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
-        <td class="workout-info-td"> ${workout.sets}</td>
-        <td class="workout-info-td"> ${workout.reps}</td>
-        <td class="workout-info-td"> ${workout.workoutComment}</td>
-        <td class="workout-info-td"> ${workout.workoutDate}</td>`
+        `<td id=workout-id-${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.muscle}</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.sets}</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.reps}</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutComment}</td>
+        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutDate}</td>
+        <button id=workout-id-${workout._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutId})">Delete</button>`
 
         tableContainer.appendChild(workoutRow)
     });
@@ -48,6 +50,8 @@ function loadWorkouts(workouts) {
 
 
 }
+
+
 
 $("form").submit(function(event){
     event.preventDefault()
@@ -120,7 +124,9 @@ function createdWorkout(workoutInfo) {
     <td class="workout-info-td"> ${workoutInfo.sets}</td>
     <td class="workout-info-td"> ${workoutInfo.reps}</td>
     <td class="workout-info-td"> ${workoutInfo.workoutComment}</td>
-    <td class="workout-info-td"> ${workoutInfo.workoutDate}</td>`
+    <td class="workout-info-td"> ${workoutInfo.workoutDate}</td>
+    <button id=workout-id-${workoutInfo._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutInfo._id})">Delete</button>`
+
 
     tableContainer.appendChild(workoutRow)
 
