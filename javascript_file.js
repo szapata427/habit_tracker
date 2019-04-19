@@ -32,7 +32,7 @@ function loadWorkouts(workouts) {
     tableContainer.appendChild(workoutRow)
     workouts.forEach(workout => {
         let workoutRow = document.createElement("tr")
-        workoutRow.setAttribute("id", `workout-tr-${workoutId}`)
+        workoutRow.setAttribute("id", `workout-tr-${workout._id}`)
         console.log(workout)
         workoutRow.innerHTML +=
         `<td id=workout-id-${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
@@ -42,7 +42,7 @@ function loadWorkouts(workouts) {
         <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.reps}</td>
         <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutComment}</td>
         <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutDate}</td>
-        <button id=workout-id-${workout._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutId})">Delete</button>`
+        <button id=workout-id-${workout._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workout._id})">Delete</button>`
 
         tableContainer.appendChild(workoutRow)
     });

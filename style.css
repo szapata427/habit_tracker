@@ -108,6 +108,8 @@ body {
       padding: 0px;
       max-width: 25em;
       margin-top: 1%;  
+      font-family: 'Montserrat', sans-serif;
+
 
   }
 
@@ -119,6 +121,8 @@ body {
      color: white;
      border: 3px solid white;
      border-radius: 1px;
+     font-family: 'Montserrat', sans-serif;
+
  }
 
 .workout-form-submit-button {
@@ -150,7 +154,7 @@ body {
  border: 3px solid black;
  /* float: right; */
  border-radius: 10px;
- background-color: rgb(243, 227, 227);
+ background-color: rgb(26, 164, 182);
 
   }
 
@@ -158,7 +162,7 @@ body {
       padding: 0;
       width: 10%;
       left: 10%;
-      font-size: 20px;
+      font-size: 22px;
       padding-left: 1em;
       font-weight: 600;
   }
@@ -167,16 +171,23 @@ body {
     padding: 0;
     padding-top: 1em;
     width: 13%;
+    max-width: 14%;
     left: 10%;
     font-size: 18px;
     padding-left: 1em;
-    color: red;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+
   }
 
   button.delete-workout-button {
       position: relative;
-      background-color: yellow;
+      background-color: RED;
       width: 8em;
-      left: 20%;
+      left: 10%;
       margin-top: 25%;
+      color: white;
+      border: 1px solid white;
+      font-size: 12px;
   }
