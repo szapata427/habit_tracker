@@ -1,4 +1,5 @@
-$(document).ready(function () {
+// $(document).ready(function () {
+document.addEventListener('DOMContentLoaded', () => {
 
 
 // var newHabitName = document.getElementById("input-habitname")
@@ -8,6 +9,7 @@ $(document).ready(function () {
 
 
 window.addEventListener("load", function() {
+    
     // loaded
     fetch('http://localhost:3005/workouts', {
         method: 'get',
@@ -17,8 +19,10 @@ window.addEventListener("load", function() {
             }
     }).then(response => response.json())
     .then(data => {
-       loadWorkouts(data)})
+       loadWorkouts(data),
+       deleteWorkout()})
 }, false);
+
 
 
 
@@ -35,14 +39,14 @@ function loadWorkouts(workouts) {
         workoutRow.setAttribute("id", `workout-tr-${workout._id}`)
         console.log(workout)
         workoutRow.innerHTML +=
-        `<td id=workout-id-${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.muscle}</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.sets}</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.reps}</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutComment}</td>
-        <td id=workout-id-${workout._id}" class="workout-info-td"> ${workout.workoutDate}</td>
-        <button id=workout-id-${workout._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workout._id})">Delete</button>`
+        `<td  data="${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.muscle}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.sets}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.reps}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.workoutComment}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.workoutDate}</td>
+        <button  data="${workout._id}"  class="delete-workout-button" type="button" >Delete</button>`
 
         tableContainer.appendChild(workoutRow)
     });
@@ -117,6 +121,8 @@ function createdWorkout(workoutInfo) {
     
     
     tableContainer.appendChild(workoutRow)
+    workoutRow.setAttribute("id", `workout-tr-${workout._id}`)
+
     workoutRow.innerHTML = 
     `<td class="workout-info-td">  ${workoutInfo.workoutname}</td>
     <td class="workout-info-td"> ${workoutInfo.muscle}</td>
@@ -132,6 +138,16 @@ function createdWorkout(workoutInfo) {
 
 }
 
+
+function deleteWorkout() {
+var deleteButtons = document.getElementsByClassName("delete-workout-button")
+for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", function(event) {
+        console.log("hitting the event", event)
+})
+
+}
+}
 
 
 })
