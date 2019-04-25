@@ -20,7 +20,7 @@ window.addEventListener("load", function() {
     }).then(response => response.json())
     .then(data => {
        loadWorkouts(data),
-       deleteWorkout()})
+       findTagToBeDeleted()})
 }, false);
 
 
@@ -139,14 +139,22 @@ function createdWorkout(workoutInfo) {
 }
 
 
-function deleteWorkout() {
+function findTagToBeDeleted() {
 var deleteButtons = document.getElementsByClassName("delete-workout-button")
 for (let i = 0; i < deleteButtons.length; i++) {
     deleteButtons[i].addEventListener("click", function(event) {
-        console.log("hitting the event", event)
+        console.log("hitting the event", event.target)
+        let deleteData = event.target.getAttribute("data");
+        deleteWorkout(deleteData)
 })
 
 }
+}
+
+function deleteWorkout(id) {
+    let tagToDelete = document.getElementById(`workout-tr-${id}`)
+    console.log(tagToDelete)
+    tagToDelete.parentNode. removeChild(tagToDelete);
 }
 
 
