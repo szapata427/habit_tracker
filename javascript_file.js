@@ -40,7 +40,7 @@ function loadWorkouts(workouts) {
         console.log(workout)
         workoutRow.innerHTML +=
         `<td  data="${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
-        <td  data="${workout._id}" class="workout-info-td"> ${workout.muscle}</td>
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.muscle}</td>git 
         <td  data="${workout._id}" class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
         <td  data="${workout._id}" class="workout-info-td"> ${workout.sets}</td>
         <td  data="${workout._id}" class="workout-info-td"> ${workout.reps}</td>
@@ -55,6 +55,32 @@ function loadWorkouts(workouts) {
 
 }
 
+function createdWorkout(workoutInfo) {
+    console.log(workoutInfo)
+    // let indivWorkoutDiv = document.getElementsByClassName("individual-workout")
+    
+    let workoutRow = document.createElement("tr")
+    let tableContainer = document.getElementById("table-workouts")
+
+    
+    
+    tableContainer.appendChild(workoutRow)
+    workoutRow.setAttribute("id", `workout-tr-${workoutInfo._id}`)
+
+    workoutRow.innerHTML = 
+    `<td class="workout-info-td">  ${workoutInfo.workoutname}</td>
+    <td class="workout-info-td"> ${workoutInfo.muscle}</td>
+    <td class="workout-info-td"> ${workoutInfo.secondaryMuscle != "null" ? workoutInfo.secondaryMuscle : "None" }</td>
+    <td class="workout-info-td"> ${workoutInfo.sets}</td>
+    <td class="workout-info-td"> ${workoutInfo.reps}</td>
+    <td class="workout-info-td"> ${workoutInfo.workoutComment}</td>
+    <td class="workout-info-td"> ${workoutInfo.workoutDate}</td>
+    <button id=workout-id-${workoutInfo._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutInfo._id})">Delete</button>`
+
+
+    tableContainer.appendChild(workoutRow)
+
+}
 
 
 $("form").submit(function(event){
@@ -111,32 +137,7 @@ $("form").submit(function(event){
     
 })
 
-function createdWorkout(workoutInfo) {
-    console.log(workoutInfo)
-    // let indivWorkoutDiv = document.getElementsByClassName("individual-workout")
-    
-    let workoutRow = document.createElement("tr")
-    let tableContainer = document.getElementById("table-workouts")
 
-    
-    
-    tableContainer.appendChild(workoutRow)
-    workoutRow.setAttribute("id", `workout-tr-${workout._id}`)
-
-    workoutRow.innerHTML = 
-    `<td class="workout-info-td">  ${workoutInfo.workoutname}</td>
-    <td class="workout-info-td"> ${workoutInfo.muscle}</td>
-    <td class="workout-info-td"> ${workoutInfo.secondaryMuscle != "null" ? workoutInfo.secondaryMuscle : "None" }</td>
-    <td class="workout-info-td"> ${workoutInfo.sets}</td>
-    <td class="workout-info-td"> ${workoutInfo.reps}</td>
-    <td class="workout-info-td"> ${workoutInfo.workoutComment}</td>
-    <td class="workout-info-td"> ${workoutInfo.workoutDate}</td>
-    <button id=workout-id-${workoutInfo._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutInfo._id})">Delete</button>`
-
-
-    tableContainer.appendChild(workoutRow)
-
-}
 
 
 function findTagToBeDeleted() {
@@ -153,10 +154,27 @@ for (let i = 0; i < deleteButtons.length; i++) {
 
 function deleteWorkout(id) {
     let tagToDelete = document.getElementById(`workout-tr-${id}`)
-    console.log(tagToDelete)
     tagToDelete.parentNode. removeChild(tagToDelete);
+    deleteWorkoutDatabase(id)
 }
 
+function deleteWorkoutDatabase(id) {
+    let delete_data = {
+        "id": id
+    }
+    fetch(`http://localhost:3005/workouts/${id}`, {
+        method: "Delete",
+        headers: {
+        "Content-Type": "application/json",
+        Accept: "applicatoin/json"
+        },
+        body: JSON.stringify(delete_data)
+    }).then(response => response.json())
+    .then(data => {
+        console.log(data)
+    }
+    )
+}
 
 })
 
