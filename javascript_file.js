@@ -40,7 +40,7 @@ function loadWorkouts(workouts) {
         console.log(workout)
         workoutRow.innerHTML +=
         `<td  data="${workout._id}" class="workout-info-td">  ${workout.workoutname}</td>
-        <td  data="${workout._id}" class="workout-info-td"> ${workout.muscle}</td>git 
+        <td  data="${workout._id}" class="workout-info-td"> ${workout.muscle}</td>
         <td  data="${workout._id}" class="workout-info-td"> ${workout.secondaryMuscle != "null" ? workout.secondaryMuscle : "None" }</td>
         <td  data="${workout._id}" class="workout-info-td"> ${workout.sets}</td>
         <td  data="${workout._id}" class="workout-info-td"> ${workout.reps}</td>
@@ -53,6 +53,13 @@ function loadWorkouts(workouts) {
 
 
 
+}
+
+function clearWorkoutInput() {
+    let workoutInputs = document.getElementsByClassName('create-workout-input')
+  for(i = 0; i < workoutInputs.length; i++) {
+      workoutInputs[i].value = ''
+  }
 }
 
 function createdWorkout(workoutInfo) {
@@ -76,10 +83,9 @@ function createdWorkout(workoutInfo) {
     <td class="workout-info-td"> ${workoutInfo.workoutComment}</td>
     <td class="workout-info-td"> ${workoutInfo.workoutDate}</td>
     <button id=workout-id-${workoutInfo._id}"  class="delete-workout-button" type="button" onclick="deleteWorkout(${workoutInfo._id})">Delete</button>`
-
-
     tableContainer.appendChild(workoutRow)
 
+    clearWorkoutInput()
 }
 
 
