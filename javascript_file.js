@@ -49,10 +49,33 @@ function loadWorkouts(workouts) {
         <button  data="${workout._id}"  class="delete-workout-button" type="button" >Delete</button>`
 
         tableContainer.appendChild(workoutRow)
+        addSetsInput(workout)
     });
 
 
 
+}
+
+function addSetsInput(workoutInfo) {
+    console.log(workoutInfo)
+    let workoutRow = document.getElementById(`workout-tr-${workoutInfo._id}`)
+    let workoutInputsContainer = document.createElement('div')
+    workoutInputsContainer.setAttribute('class', '.div-workout-container-sets-reps-input')
+
+    workoutRow.append(workoutInputsContainer)
+    for(i = 0; i <workoutInfo.sets; i++) {
+        let workoutValuesInput = document.createElement('div')
+
+        workoutValuesInput.setAttribute("id", `div-workout-inputs-${workoutInfo._id}`)
+        workoutValuesInput.setAttribute("class", `div-workout-sets-reps-input`)
+        workoutValuesInput.innerHTML += 
+        `
+            Weight<input class="weight-input" type="number" name="Weight"/>
+            Reps<input class="reps-input" type="number" name="Reps"/>`
+        
+        workoutInputsContainer.appendChild(workoutValuesInput)
+    }
+   
 }
 
 function clearWorkoutInput() {
