@@ -59,21 +59,22 @@ function loadWorkouts(workouts) {
 function addSetsInput(workoutInfo) {
     console.log(workoutInfo)
     let workoutRow = document.getElementById(`workout-tr-${workoutInfo._id}`)
-    let workoutInputsContainer = document.createElement('div')
-    workoutInputsContainer.setAttribute('class', '.div-workout-container-sets-reps-input')
+    // let workoutInputsContainer = document.createElement('div')
+    // workoutInputsContainer.setAttribute('class', '.div-workout-container-sets-reps-input')
 
-    workoutRow.append(workoutInputsContainer)
+    // workoutRow.append(workoutInputsContainer)
+    let workoutValuesInput = document.createElement('div')
     for(i = 0; i <workoutInfo.sets; i++) {
-        let workoutValuesInput = document.createElement('div')
-
+        
         workoutValuesInput.setAttribute("id", `div-workout-inputs-${workoutInfo._id}`)
-        workoutValuesInput.setAttribute("class", `div-workout-sets-reps-input`)
+        workoutValuesInput.setAttribute("class", `div-workout-container-sets-reps-input`)
         workoutValuesInput.innerHTML += 
         `
-            Weight<input class="weight-input" type="number" name="Weight"/>
-            Reps<input class="reps-input" type="number" name="Reps"/>`
+        Weight<span class="div-workout-sets-reps-input "><input class="weight-input" type="number" name="Weight">
+        Reps<input class="reps-input" type="number" name="Reps"></span>`
         
-        workoutInputsContainer.appendChild(workoutValuesInput)
+        // workoutRow.appendChild(workoutValuesInput)
+        $(workoutRow).after(workoutValuesInput)
     }
    
 }
