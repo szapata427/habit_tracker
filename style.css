@@ -192,6 +192,8 @@ body {
       font-size: 12px;
   }
 
+
+/* sets and reps css */
   .div-workout-container-sets-reps-input {
       position: relative;
       width: 100%;
@@ -218,4 +220,12 @@ body {
 
     .reps-input {
       margin-left: 1em;
+    }
+
+  .weight-reps-submit-button {
+    background-color: rgb(107, 248, 107);
+    color: white;
+    font-weight: 700;
+    padding-right: 2em;
+    padding-left: 2em;
     }

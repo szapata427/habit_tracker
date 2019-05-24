@@ -69,7 +69,8 @@ function addSetsInput(workoutInfo) {
         workoutValuesInput.innerHTML += 
         `
         <div class="div-individual-wrokout-sets-reps">Weight<span class="div-workout-sets-reps-input "><input class="weight-input" type="number" name="Weight">
-        </span><span class="div-workout-sets-reps-input ">Reps<input class="reps-input" type="number" name="Reps"></span></div>`
+        </span><span class="div-workout-sets-reps-input ">Reps<input class="reps-input" type="number" name="Reps"></span>
+        <button type="submit" class="weight-reps-submit-button">Submit</button></div>`
         
         // workoutRow.appendChild(workoutValuesInput)
         $(workoutRow).after(workoutValuesInput)
