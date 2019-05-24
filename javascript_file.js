@@ -25,8 +25,6 @@ window.addEventListener("load", function() {
 
 
 
-
-
 function loadWorkouts(workouts) {
     console.log(workouts)
     let workoutRow = document.createElement("tr")
@@ -70,8 +68,8 @@ function addSetsInput(workoutInfo) {
         workoutValuesInput.setAttribute("class", `div-workout-container-sets-reps-input`)
         workoutValuesInput.innerHTML += 
         `
-        Weight<span class="div-workout-sets-reps-input "><input class="weight-input" type="number" name="Weight">
-        Reps<input class="reps-input" type="number" name="Reps"></span>`
+        <div class="div-individual-wrokout-sets-reps">Weight<span class="div-workout-sets-reps-input "><input class="weight-input" type="number" name="Weight">
+        </span><span class="div-workout-sets-reps-input ">Reps<input class="reps-input" type="number" name="Reps"></span></div>`
         
         // workoutRow.appendChild(workoutValuesInput)
         $(workoutRow).after(workoutValuesInput)
@@ -182,11 +180,15 @@ for (let i = 0; i < deleteButtons.length; i++) {
 }
 }
 
+
+
 function deleteWorkout(id) {
     let tagToDelete = document.getElementById(`workout-tr-${id}`)
     tagToDelete.parentNode. removeChild(tagToDelete);
     deleteWorkoutDatabase(id)
 }
+
+
 
 function deleteWorkoutDatabase(id) {
     let delete_data = {
