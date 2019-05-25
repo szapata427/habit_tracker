@@ -161,7 +161,7 @@ $("form").submit(function(event){
             body: JSON.stringify(data)
     }).then(response => response.json())
     .then(data => {
-        createdWorkout(data)})
+        createdWorkout(data), addSetsInput(data)})
 
     
 })
@@ -184,8 +184,10 @@ for (let i = 0; i < deleteButtons.length; i++) {
 
 
 function deleteWorkout(id) {
+    let deleteWorkoutInputs = document.getElementById(`div-workout-inputs-${id}`)
     let tagToDelete = document.getElementById(`workout-tr-${id}`)
     tagToDelete.parentNode. removeChild(tagToDelete);
+    deleteWorkoutInputs.parentNode. removeChild(deleteWorkoutInputs);
     deleteWorkoutDatabase(id)
 }
 
@@ -211,4 +213,6 @@ function deleteWorkoutDatabase(id) {
 
 })
 
+
+document.getElementsByClassName('weight-reps-submit-button')
 
