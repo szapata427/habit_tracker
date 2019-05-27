@@ -9,6 +9,13 @@ module.exports = function(app, db) {
     })
   })
 
+  
+  // app.get('/setsreps', (req, res) => {
+  //   db.collection('setsreps').find().toArray((err, result) => {
+  //     res.send(result)
+  //   })
+  // })
+
   app.get('/workouts/:id', (req, res) => {
         const id = req.params.id;
           const details = { '_id': new ObjectID(id) };
@@ -21,7 +28,19 @@ module.exports = function(app, db) {
           });
        });
 
-       const collection = app.post('/workouts', (req, res) => {
+  // app.get('/setsreps/:id', (req, res) => {
+  //       const id = req.params.id;
+  //         const details = { '_id': new ObjectID(id) };
+  //         db.collection('setsreps').findOne(details, (err, item) => {
+  //           if (err) {
+  //             res.send({'error':'An error has occurred'});
+  //           } else {
+  //             res.send(item);
+  //           }
+  //         });
+  //      });
+
+      const collection = app.post('/workouts', (req, res) => {
       const habit = 
       { 
         workoutname: req.body.workoutname,
@@ -41,6 +60,29 @@ module.exports = function(app, db) {
         }
       })
     });
+
+
+    //   const collection = app.post('/setsreps', (req, res) => {
+    //   const setsreps = 
+
+    //   { 
+    //     setnumber: req.body.setnumber,
+    //     weights: req.body.weights, 
+    //     reps: req.body.reps, 
+    //     workoutid: req.body.workoutid
+    //   }
+
+    //   db.collection('setsreps').insertOne(setsreps, (err, result) => {
+    //     if (err) {
+    //       res.send({ 'error' : "An error has occurred"})
+    //     }
+    //     else {
+    //       res.send(result.ops[0])
+    //     }
+    //   })
+    // });
+
+
 
     app.delete('/workouts/:id', (req, res) => {
       const id = req.params.id;

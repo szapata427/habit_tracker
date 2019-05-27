@@ -229,3 +229,12 @@ body {
     padding-right: 2em;
     padding-left: 2em;
     }
+
+ /* error mesage workout form */
+
+ .empty-set-input {
+   color: red;
+   size: 16px;
+   
+
+ }

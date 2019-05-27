@@ -2,27 +2,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-// var newHabitName = document.getElementById("input-habitname")
-// var submitNewHabit = document.getElementById("habit-submit")
-// var submitNewHabit = document.getElementsByClassName("habit-form-submit-button")[0]
 
-
-
-window.addEventListener("load", function() {
+// window.addEventListener("load", function() {
     
     // loaded
-    fetch('http://localhost:3005/workouts', {
-        method: 'get',
-        headers: { 
-        "Content-Type": "application/json",
-        Accept: "applicatoin/json"
-            }
-    }).then(response => response.json())
-    .then(data => {
-       loadWorkouts(data),
-       findTagToBeDeleted()})
-}, false);
+fetch('http://localhost:3005/workouts', {
+    method: 'get',
+    headers: { 
+    "Content-Type": "application/json",
+    Accept: "applicatoin/json"
+        }
+}).then(response => response.json())
+.then(data => {
+    loadWorkouts(data),
+    findTagToBeDeleted()})
+// }, false);
 
+
+// let repssetsform = document.getElementsByClassName('repsform')
+// if (repssetsform) {
+//     for(i = 0; i < repssetsform.length; i++) {
+//         repssetsform[i].addEventListener('submit', (e) => {
+//             e.preventDefault()
+//             console.log(e)
+//         })
+
+//     }
+    
+// }
+
+
+// $('.repsform').submit(function(e) {
+//     alert('intercept');
+    
+//     console.log(e)
+//     return false
+// })
 
 
 function loadWorkouts(workouts) {
@@ -68,9 +83,13 @@ function addSetsInput(workoutInfo) {
         workoutValuesInput.setAttribute("class", `div-workout-container-sets-reps-input`)
         workoutValuesInput.innerHTML += 
         `
-        <div class="div-individual-wrokout-sets-reps">Weight<span class="div-workout-sets-reps-input "><input class="weight-input" type="number" name="Weight">
-        </span><span class="div-workout-sets-reps-input ">Reps<input class="reps-input" type="number" name="Reps"></span>
-        <button type="submit" class="weight-reps-submit-button">Submit</button></div>`
+        <div data="${workoutInfo._id}" class="div-individual-workout-sets-reps">
+        <form class="repsform">
+        Weight<input class="weight-input" type="number" name="Weight">
+        Reps<input class="reps-input" type="number" name="Reps">
+        <input type="submit" class="weight-reps-submit-button">Submit</input>
+        </form>
+        </div>`
         
         // workoutRow.appendChild(workoutValuesInput)
         $(workoutRow).after(workoutValuesInput)
@@ -112,8 +131,9 @@ function createdWorkout(workoutInfo) {
 }
 
 
-$("form").submit(function(event){
+$(".create_workout-form").submit(function(event){
     event.preventDefault()
+
     // alert("Submitted");
     var namevalue = $("input[name=workoutname]").val()
     var muslcegroup = $("select[name=muscles]").val()
@@ -122,6 +142,56 @@ $("form").submit(function(event){
     var commentvalue = $("input[name=comment]").val()
     var secondaryMuscleValue = $("select[name=secondMuscles]").val()
     // var inputvalue = $("#input-habitname").val()
+
+    let setserrorMessage = document.getElementsByClassName('empty-set-input')
+    let repsserrorMessage = document.getElementsByClassName('empty-reps-input')
+
+    if (setserrorMessage.length > 0 && setsvalue != "") {
+        console.log("error message here")
+        let setsTagerror = document.getElementById('sets-label')
+        setsTagerror.removeChild(setsTagerror.firstElementChild)
+    }
+    else if (setsvalue == "" && setserrorMessage.length > 0 ){
+        console.log("still empty!")
+        return null
+
+    }
+    
+    
+    if (setsvalue == "" && setserrorMessage.length == 0) {
+        console.log("cannout be empty")
+        let setsTag = document.getElementById('sets-label')
+        let emptySetsMessageTag = document.createElement('div')
+        emptySetsMessageTag.setAttribute('class', 'empty-set-input')
+        emptySetsMessageTag.innerHTML = 'Sets cannot be empty!'
+        setsTag.appendChild(emptySetsMessageTag)
+
+        return null
+    }
+
+
+    if (repsserrorMessage.length > 0 && repsvalue != "") {
+        console.log("error message here")
+        let repsTagerror = document.getElementById('reps-label')
+        setsTagerrrepsemoveChild(setsTagerrrepsirstElementChild)
+    }
+    else if (repsvalue == "" && repsserrorMessage.length > 0 ){
+        console.log("still empty!")
+        return null
+
+    }
+    
+    
+    if (repsvalue == "" && repsserrorMessage.length == 0) {
+        console.log("cannout be empty")
+        let setsTag = document.getElementById('reps-label')
+        let emptyRepsMessageTag = document.createElement('div')
+        emptyRepsMessageTag.setAttribute('class', 'empty-reps-input')
+        emptyRepsMessageTag.innerHTML = 'Reps cannot be empty!'
+        setsTag.appendChild(emptyRepsMessageTag)
+
+        return null
+    }
 
 
     var todaysDate = new Date()
@@ -149,19 +219,17 @@ $("form").submit(function(event){
 
     }
 
-    
-   
     fetch('http://localhost:3005/workouts', {
         method: 'post',
         headers: { 
         "Content-Type": "application/json",
-        Accept: "applicatoin/json"
+        Accept: "application/json"
             },
             
             body: JSON.stringify(data)
     }).then(response => response.json())
     .then(data => {
-        createdWorkout(data), addSetsInput(data)})
+        createdWorkout(data), addSetsInput(data), setsrepsToDataBase(data)})
 
     
 })
@@ -182,12 +250,42 @@ for (let i = 0; i < deleteButtons.length; i++) {
 }
 
 
+//post to setsreps database
+
+// function setsrepsToDataBase(data) {
+//     console.log(data)
+//     let totalSets = parseInt(data.sets)
+//     let workoutId = data._id
+//     for (var i = 0; i < totalSets; i++) {
+
+//         let postData = {
+//         setnumber: i,
+//         weight: null,
+//         reps: null,
+//         workoutid: workoutId
+//     }
+
+//     fetch(`http://localhost:3005/setsreps`, {
+//         method: 'Post',
+//         headers: {
+//             "Content-Type": "application/json",
+//             Accept: "application/json"
+//         },
+//         body: JSON.stringify(postData)
+//     }).then(response => response.json())
+//     .then(info => console.log(info))
+
+//     }
+// }
+
+
 
 function deleteWorkout(id) {
+    console.log(id)
     let deleteWorkoutInputs = document.getElementById(`div-workout-inputs-${id}`)
     let tagToDelete = document.getElementById(`workout-tr-${id}`)
-    tagToDelete.parentNode. removeChild(tagToDelete);
-    deleteWorkoutInputs.parentNode. removeChild(deleteWorkoutInputs);
+    tagToDelete.parentNode.removeChild(tagToDelete);
+    // deleteWorkoutInputs.parentNode.removeChild(deleteWorkoutInputs);
     deleteWorkoutDatabase(id)
 }
 
@@ -211,8 +309,25 @@ function deleteWorkoutDatabase(id) {
     )
 }
 
+
+
+
+// document.addEventListener('click', (e) => {
+    //     e.preventDefault()
+    // console.log(e.target.form)
+    // // if (e.target.className == "weight-input") {
+        // //     console.log(e.target.value)
+        // // }
+        // })
+        
+        
+        
+
+
+
+
+
+
+
+
 })
-
-
-document.getElementsByClassName('weight-reps-submit-button')
-
