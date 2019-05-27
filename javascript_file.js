@@ -157,7 +157,6 @@ $(".create_workout-form").submit(function(event){
 
     }
     
-    
     if (setsvalue == "" && setserrorMessage.length == 0) {
         console.log("cannout be empty")
         let setsTag = document.getElementById('sets-label')
@@ -170,10 +169,14 @@ $(".create_workout-form").submit(function(event){
     }
 
 
+
+
+
+
     if (repsserrorMessage.length > 0 && repsvalue != "") {
         console.log("error message here")
         let repsTagerror = document.getElementById('reps-label')
-        setsTagerrrepsemoveChild(setsTagerrrepsirstElementChild)
+        repsTagerror.removeChild(repsTagerror.firstElementChild)
     }
     else if (repsvalue == "" && repsserrorMessage.length > 0 ){
         console.log("still empty!")
