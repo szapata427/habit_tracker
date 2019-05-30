@@ -32,12 +32,37 @@ fetch('http://localhost:3005/workouts', {
 // }
 
 
-// $('.repsform').submit(function(e) {
-//     alert('intercept');
+    document.addEventListener('submit', (e) => {
+        e.preventDefault()
+        console.log(e)
+       let weight = e.target.children.Weight.value
+        let reps = e.target.children.Reps.value
+
+        let workoutId = e.target.children.Weight.dataset.workout
+        let weightSet = e.target.children.Weight.dataset.set
+        let weightRep = e.target.children.Weight.dataset.rep
+
+        // let submitButton = document.getElementById(`set-rep-submit-${weightSet}-${workoutId}`)
+        let submitButton = document.getElementById(`form-${weightSet}-${workoutId}`)
+        console.log(`set-rep-submit-${weightSet}-${workoutId}`)
+        let resultsSubmited = submitButton.children
+        console.log(resultsSubmited)
+        if (resultsSubmited.length == 0) {
+            let weightResult = document.createElement('div')
+            weightResult.innerHTML = weight
+            submitButton.append(weightResult)
+        }
+        else {
+            resultsSubmited[0].innerHTML = weight
+
+        }
+
+        
+
+
+    })
     
-//     console.log(e)
-//     return false
-// })
+
 
 
 function loadWorkouts(workouts) {
@@ -72,11 +97,11 @@ function loadWorkouts(workouts) {
 function addSetsInput(workoutInfo) {
     console.log(workoutInfo)
     let workoutRow = document.getElementById(`workout-tr-${workoutInfo._id}`)
-    // let workoutInputsContainer = document.createElement('div')
-    // workoutInputsContainer.setAttribute('class', '.div-workout-container-sets-reps-input')
 
-    // workoutRow.append(workoutInputsContainer)
     let workoutValuesInput = document.createElement('div')
+    let setsrepsform = document.createElement('form')
+
+    setsrepsform.setAttribute('class', 'repssetsform')
     for(i = 0; i <workoutInfo.sets; i++) {
         
         workoutValuesInput.setAttribute("id", `div-workout-inputs-${workoutInfo._id}`)
@@ -84,16 +109,17 @@ function addSetsInput(workoutInfo) {
         workoutValuesInput.innerHTML += 
         `
         <div data="${workoutInfo._id}" class="div-individual-workout-sets-reps">
-        <form class="repsform">
-        Weight<input class="weight-input" type="number" name="Weight">
-        Reps<input class="reps-input" type="number" name="Reps">
-        <input type="submit" class="weight-reps-submit-button">Submit</input>
+        <form class="repsform" id="form-${i+1}-${workoutInfo._id}" >
+        Weight<input class="weight-input" type="number" name="Weight" data-workout="${workoutInfo._id}" data-set="${i+1}" data-rep="${i+1}" id="set-${i + 1}-${workoutInfo._id}">
+        Reps<input class="reps-input" type="number" name="Reps" data-workout="${workoutInfo._id}" id="reps-${i + 1}-${workoutInfo._id}">
+        <input type="submit" class="weight-reps-submit-button" data-workout="${workoutInfo._id}" id="set-rep-submit-${i + 1}-${workoutInfo._id}"></input>
         </form>
         </div>`
         
         // workoutRow.appendChild(workoutValuesInput)
         $(workoutRow).after(workoutValuesInput)
     }
+
    
 }
 
@@ -288,7 +314,7 @@ function deleteWorkout(id) {
     let deleteWorkoutInputs = document.getElementById(`div-workout-inputs-${id}`)
     let tagToDelete = document.getElementById(`workout-tr-${id}`)
     tagToDelete.parentNode.removeChild(tagToDelete);
-    // deleteWorkoutInputs.parentNode.removeChild(deleteWorkoutInputs);
+    deleteWorkoutInputs.parentNode.removeChild(deleteWorkoutInputs);
     deleteWorkoutDatabase(id)
 }
 
