@@ -19,22 +19,11 @@ fetch('http://localhost:3005/workouts', {
 // }, false);
 
 
-// let repssetsform = document.getElementsByClassName('repsform')
-// if (repssetsform) {
-//     for(i = 0; i < repssetsform.length; i++) {
-//         repssetsform[i].addEventListener('submit', (e) => {
-//             e.preventDefault()
-//             console.log(e)
-//         })
-
-//     }
-    
-// }
 
 
     document.addEventListener('submit', (e) => {
         e.preventDefault()
-        console.log(e)
+        // console.log(e)
        let weight = e.target.children.Weight.value
         let reps = e.target.children.Reps.value
 
@@ -42,20 +31,23 @@ fetch('http://localhost:3005/workouts', {
         let weightSet = e.target.children.Weight.dataset.set
         let weightRep = e.target.children.Weight.dataset.rep
 
-        // let submitButton = document.getElementById(`set-rep-submit-${weightSet}-${workoutId}`)
-        let submitButton = document.getElementById(`form-${weightSet}-${workoutId}`)
+        let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
         console.log(`set-rep-submit-${weightSet}-${workoutId}`)
-        let resultsSubmited = submitButton.children
-        console.log(resultsSubmited)
-        if (resultsSubmited.length == 0) {
-            let weightResult = document.createElement('div')
+   
+        let weightshowing = document.getElementById(`weight-result-${weightSet}-${workoutId}`)
+        if (!weightshowing) {
+            let weightResult = document.createElement('span')
+            weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
             weightResult.innerHTML = weight
-            submitButton.append(weightResult)
+            resultweightsubmit.append(weightResult)
         }
-        else {
-            resultsSubmited[0].innerHTML = weight
 
+        else {
+            weightshowing.innerHTML = weight
         }
+
+        })
+
 
         
 
@@ -193,11 +185,6 @@ $(".create_workout-form").submit(function(event){
 
         return null
     }
-
-
-
-
-
 
     if (repsserrorMessage.length > 0 && repsvalue != "") {
         console.log("error message here")
@@ -358,5 +345,3 @@ function deleteWorkoutDatabase(id) {
 
 
 
-
-})
