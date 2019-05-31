@@ -244,3 +244,10 @@ body {
    
 
  }
+
+ .show-result-span {
+   padding-left: 3em;
+   size: 50px;
+   color: rgb(247, 146, 121);
+   font-weight: 700;
+ }

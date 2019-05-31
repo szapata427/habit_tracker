@@ -35,9 +35,12 @@ fetch('http://localhost:3005/workouts', {
         console.log(`set-rep-submit-${weightSet}-${workoutId}`)
    
         let weightshowing = document.getElementById(`weight-result-${weightSet}-${workoutId}`)
+        let repshowing = document.getElementById(`rep-result-${weightSet}-${workoutId}`)
+
         if (!weightshowing) {
             let weightResult = document.createElement('span')
             weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
+            weightResult.setAttribute('class', `show-result-span`)
             weightResult.innerHTML = weight
             resultweightsubmit.append(weightResult)
         }
@@ -46,6 +49,17 @@ fetch('http://localhost:3005/workouts', {
             weightshowing.innerHTML = weight
         }
 
+        if (!repshowing) {
+            let represult = document.createElement('span')
+            represult.setAttribute('id', `rep-result-${weightSet}-${workoutId}`)
+            represult.setAttribute('class', `show-result-span`)
+            represult.innerHTML = weight
+            resultweightsubmit.append(represult)
+        }
+
+        else {
+            repshowing.innerHTML = repshowing
+        }
         })
 
 
