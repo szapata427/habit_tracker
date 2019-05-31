@@ -23,48 +23,146 @@ fetch('http://localhost:3005/workouts', {
 
     document.addEventListener('submit', (e) => {
         e.preventDefault()
-        // console.log(e)
-       let weight = e.target.children.Weight.value
-        let reps = e.target.children.Reps.value
+        console.log(e.target.className)
+        if (e.target.className == "repsform") {
 
-        let workoutId = e.target.children.Weight.dataset.workout
-        let weightSet = e.target.children.Weight.dataset.set
-        let weightRep = e.target.children.Weight.dataset.rep
-
-        let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
-        console.log(`set-rep-submit-${weightSet}-${workoutId}`)
-   
-        let weightshowing = document.getElementById(`weight-result-${weightSet}-${workoutId}`)
-        let repshowing = document.getElementById(`rep-result-${weightSet}-${workoutId}`)
-
-        if (!weightshowing) {
-            let weightResult = document.createElement('span')
-            weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
-            weightResult.setAttribute('class', `show-result-span`)
-            weightResult.innerHTML = weight
-            resultweightsubmit.append(weightResult)
+            let weight = e.target.children.Weight.value
+            let reps = e.target.children.Reps.value
+            
+            let workoutId = e.target.children.Weight.dataset.workout
+            let weightSet = e.target.children.Weight.dataset.set
+            let weightRep = e.target.children.Weight.dataset.rep
+            
+            let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
+            console.log(`set-rep-submit-${weightSet}-${workoutId}`)
+            
+            let weightshowing = document.getElementById(`weight-result-${weightSet}-${workoutId}`)
+            let repshowing = document.getElementById(`rep-result-${weightSet}-${workoutId}`)
+            
+            if (!weightshowing) {
+                let weightResult = document.createElement('span')
+                weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
+                weightResult.setAttribute('class', `show-result-span`)
+                weightResult.innerHTML = weight
+                resultweightsubmit.append(weightResult)
+            }
+            
+            else {
+                weightshowing.innerHTML = weight
+            }
+            
+            if (!repshowing) {
+                let represult = document.createElement('span')
+                represult.setAttribute('id', `rep-result-${weightSet}-${workoutId}`)
+                represult.setAttribute('class', `show-result-span`)
+                represult.innerHTML = reps
+                resultweightsubmit.append(represult)
+            }
+            
+            else {
+                repshowing.innerHTML = reps
+            }
         }
 
-        else {
-            weightshowing.innerHTML = weight
-        }
+        else if (e.target.className == "create_workout-form") {
+        console.log("create workout form ", e)
+    // alert("Submitted");
+    var namevalue = $("input[name=workoutname]").val()
+    var muslcegroup = $("select[name=muscles]").val()
+    var setsvalue = $("input[name=sets]").val()
+    var repsvalue = $("input[name=reps]").val()
+    var commentvalue = $("input[name=comment]").val()
+    var secondaryMuscleValue = $("select[name=secondMuscles]").val()
+    // var inputvalue = $("#input-habitname").val()
 
-        if (!repshowing) {
-            let represult = document.createElement('span')
-            represult.setAttribute('id', `rep-result-${weightSet}-${workoutId}`)
-            represult.setAttribute('class', `show-result-span`)
-            represult.innerHTML = reps
-            resultweightsubmit.append(represult)
-        }
+    let setserrorMessage = document.getElementsByClassName('empty-set-input')
+    let repsserrorMessage = document.getElementsByClassName('empty-reps-input')
 
-        else {
-            repshowing.innerHTML = reps
+    if (setserrorMessage.length > 0 && setsvalue != "") {
+        console.log("error message here")
+        let setsTagerror = document.getElementById('sets-label')
+        setsTagerror.removeChild(setsTagerror.firstElementChild)
+    }
+    else if (setsvalue == "" && setserrorMessage.length > 0 ){
+        console.log("still empty!")
+        return null
+
+    }
+    
+    if (setsvalue == "" && setserrorMessage.length == 0) {
+        console.log("cannout be empty")
+        let setsTag = document.getElementById('sets-label')
+        let emptySetsMessageTag = document.createElement('div')
+        emptySetsMessageTag.setAttribute('class', 'empty-set-input')
+        emptySetsMessageTag.innerHTML = 'Sets cannot be empty!'
+        setsTag.appendChild(emptySetsMessageTag)
+
+        return null
+    }
+
+    if (repsserrorMessage.length > 0 && repsvalue != "") {
+        console.log("error message here")
+        let repsTagerror = document.getElementById('reps-label')
+        repsTagerror.removeChild(repsTagerror.firstElementChild)
+    }
+    else if (repsvalue == "" && repsserrorMessage.length > 0 ){
+        console.log("still empty!")
+        return null
+
+    }
+    
+    
+    if (repsvalue == "" && repsserrorMessage.length == 0) {
+        console.log("cannout be empty")
+        let setsTag = document.getElementById('reps-label')
+        let emptyRepsMessageTag = document.createElement('div')
+        emptyRepsMessageTag.setAttribute('class', 'empty-reps-input')
+        emptyRepsMessageTag.innerHTML = 'Reps cannot be empty!'
+        setsTag.appendChild(emptyRepsMessageTag)
+
+        return null
+    }
+
+
+    var todaysDate = new Date()
+    var dd = todaysDate.getDate()
+    var mm = todaysDate.getMonth() 
+
+    var yyyy = todaysDate.getFullYear();
+    if (dd < 10) {
+    dd = '0' + dd;
+    } 
+    if (mm < 10) {
+    mm = '0' + mm;
+    } 
+    var todaysDate = mm + '/' + dd + '/' + yyyy;
+
+
+    data = {
+        workoutname: namevalue,
+        muscle: muslcegroup,
+        sets: setsvalue,
+        reps: repsvalue,
+        workoutComment: commentvalue,
+        workoutDate : todaysDate,
+        secondaryMuscle: secondaryMuscleValue
+
+    }
+
+    fetch('http://localhost:3005/workouts', {
+        method: 'post',
+        headers: { 
+        "Content-Type": "application/json",
+        Accept: "application/json"
+            },
+            
+            body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(data => {
+        createdWorkout(data), addSetsInput(data), setsrepsToDataBase(data)})
+
         }
         })
-
-
-        
-
 
     })
     
@@ -164,8 +262,9 @@ function createdWorkout(workoutInfo) {
 
 
 $(".create_workout-form").submit(function(event){
-    event.preventDefault()
 
+    event.preventDefault()
+    console.log("create workout form ", event)
     // alert("Submitted");
     var namevalue = $("input[name=workoutname]").val()
     var muslcegroup = $("select[name=muscles]").val()
