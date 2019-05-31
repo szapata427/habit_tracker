@@ -53,12 +53,12 @@ fetch('http://localhost:3005/workouts', {
             let represult = document.createElement('span')
             represult.setAttribute('id', `rep-result-${weightSet}-${workoutId}`)
             represult.setAttribute('class', `show-result-span`)
-            represult.innerHTML = weight
+            represult.innerHTML = reps
             resultweightsubmit.append(represult)
         }
 
         else {
-            repshowing.innerHTML = repshowing
+            repshowing.innerHTML = reps
         }
         })
 
