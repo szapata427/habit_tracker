@@ -62,7 +62,26 @@ fetch('http://localhost:3005/workouts', {
             else {
                 repshowing.innerHTML = reps
             }
+            let setsrepspost = {
+                setnumber: weightSet,
+                weights: weight, 
+                reps: reps, 
+                workoutid: workoutId
+            }
+            fetch('http://localhost:3005/setsreps', {
+                method: 'post',
+                headers: { 
+                "Content-Type": "application/json",
+                Accept: "application/json"
+                    },
+                    
+                    body: JSON.stringify(setsrepspost)
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)})
+            
         }
+        
 
         else if (e.target.className == "create_workout-form") {
         console.log("create workout form ", e)
@@ -159,7 +178,8 @@ fetch('http://localhost:3005/workouts', {
             body: JSON.stringify(data)
     }).then(response => response.json())
     .then(data => {
-        createdWorkout(data), addSetsInput(data), setsrepsToDataBase(data)})
+        console.log(data)
+        createdWorkout(data), addSetsInput(data)})
 
         }
         })
@@ -358,7 +378,7 @@ $(".create_workout-form").submit(function(event){
             body: JSON.stringify(data)
     }).then(response => response.json())
     .then(data => {
-        createdWorkout(data), addSetsInput(data), setsrepsToDataBase(data)})
+        createdWorkout(data), addSetsInput(data)})
 
     
 })
@@ -394,17 +414,6 @@ for (let i = 0; i < deleteButtons.length; i++) {
 //         workoutid: workoutId
 //     }
 
-//     fetch(`http://localhost:3005/setsreps`, {
-//         method: 'Post',
-//         headers: {
-//             "Content-Type": "application/json",
-//             Accept: "application/json"
-//         },
-//         body: JSON.stringify(postData)
-//     }).then(response => response.json())
-//     .then(info => console.log(info))
-
-//     }
 // }
 
 

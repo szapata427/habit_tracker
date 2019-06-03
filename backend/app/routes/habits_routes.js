@@ -10,11 +10,7 @@ module.exports = function(app, db) {
   })
 
   
-  // app.get('/setsreps', (req, res) => {
-  //   db.collection('setsreps').find().toArray((err, result) => {
-  //     res.send(result)
-  //   })
-  // })
+
 
   app.get('/workouts/:id', (req, res) => {
         const id = req.params.id;
@@ -123,3 +119,5 @@ module.exports = function(app, db) {
 
 
 };
+
+
