@@ -214,9 +214,27 @@ function loadWorkouts(workouts) {
         addSetsInput(workout)
     });
 
+    fetch('http://localhost:3005/setsreps')
+    .then(response => response.json())
+    .then(data => loadSetsReps(data))
+
 
 
 }
+
+const loadSetsReps = (data) => {
+    console.log(data)
+    for(const repset in data) {
+        let weightSet =  data[repset].weights
+        let workoutId =  data[repset].workoutid
+        console.log(weightSet)
+        // let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
+
+    }
+}
+
+
+
 
 function addSetsInput(workoutInfo) {
     console.log(workoutInfo)
