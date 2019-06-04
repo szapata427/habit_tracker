@@ -225,11 +225,19 @@ function loadWorkouts(workouts) {
 const loadSetsReps = (data) => {
     console.log(data)
     for(const repset in data) {
-        let weightSet =  data[repset].weights
+        let weight =  data[repset].weights
         let workoutId =  data[repset].workoutid
+        let weightSet =  data[repset].setnumber
         console.log(weightSet)
-        // let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
+        let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
 
+        if (resultweightsubmit) {
+            let weightResult = document.createElement('span')
+            weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
+            weightResult.setAttribute('class', `show-result-span`)
+            weightResult.innerHTML = weight
+            resultweightsubmit.append(weightResult)
+        }
     }
 }
 
