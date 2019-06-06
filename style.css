@@ -253,3 +253,14 @@ body {
    color: white;
    font-weight: 700;
  }
+
+ /* delete repssets button */
+
+ .weight-reps-delete-button {
+   background-color: red;
+   padding-left: 3%;
+   padding-right: 3%;
+   padding-top: .3%;
+   padding-bottom: .3%;
+   color: white;
+ }

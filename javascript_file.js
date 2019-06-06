@@ -276,6 +276,7 @@ function addSetsInput(workoutInfo) {
         Weight<input class="weight-input" type="number" name="Weight" data-workout="${workoutInfo._id}" data-set="${i+1}" data-rep="${i+1}" id="set-${i + 1}-${workoutInfo._id}">
         Reps<input class="reps-input" type="number" name="Reps" data-workout="${workoutInfo._id}" id="reps-${i + 1}-${workoutInfo._id}">
         <input type="submit" class="weight-reps-submit-button" data-workout="${workoutInfo._id}" id="set-rep-submit-${i + 1}-${workoutInfo._id}"></input>
+        <button type="delete" class="weight-reps-delete-button" data-workout="${workoutInfo._id}" id="set-rep-submit-${i + 1}-${workoutInfo._id}">Delete</button>
         </form>
         </div>`
         
