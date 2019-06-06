@@ -141,7 +141,7 @@ body {
 
 /* all workouts css */
 .workout-table-div{
-    position: relative;
+    /* position: relative; */
     width: 75%;
     display: inline-block;
     margin-top: 40em;
@@ -158,13 +158,15 @@ body {
 
   }
 
-  td.th-workout {
+  span.th-workout {
       padding: 0;
-      width: 10%;
+      width: 40%;
       left: 10%;
-      font-size: 22px;
+      font-size: 26px;
       padding-left: 1em;
-      font-weight: 600;
+      padding-right: 1em;
+      font-weight: 700;
+      color: rgb(172, 243, 190);
   }
 
   td.workout-info-td {
@@ -247,7 +249,7 @@ body {
 
  .show-result-span {
    padding-left: 3em;
-   size: 50px;
+   font-size: 20px;
    color: white;
    font-weight: 700;
  }
