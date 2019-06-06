@@ -228,6 +228,7 @@ const loadSetsReps = (data) => {
         let weight =  data[repset].weights
         let workoutId =  data[repset].workoutid
         let weightSet =  data[repset].setnumber
+        let reps =  data[repset].reps
         console.log(weightSet)
         let resultweightsubmit = document.getElementById(`form-${weightSet}-${workoutId}`)
 
@@ -237,7 +238,19 @@ const loadSetsReps = (data) => {
             weightResult.setAttribute('class', `show-result-span`)
             weightResult.innerHTML = weight
             resultweightsubmit.append(weightResult)
+            let repResult = document.createElement('span')
+            repResult.setAttribute('id', `rep-result-${weightSet}-${workoutId}`)
+            repResult.setAttribute('class', `show-result-span`)
+            repResult.innerHTML = reps
+            resultweightsubmit.append(repResult)
         }
+        // if (resultweightsubmit) {
+        //     let weightResult = document.createElement('span')
+        //     weightResult.setAttribute('id', `weight-result-${weightSet}-${workoutId}`)
+        //     weightResult.setAttribute('class', `show-result-span`)
+        //     weightResult.innerHTML = weight
+        //     resultweightsubmit.append(weightResult)
+        // }
     }
 }
 
